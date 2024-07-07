@@ -1,0 +1,7 @@
+{
+  "name": "react-create-ds-template-collection-dotenv",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "dist/src/code/code.js",
+  "ui": "dist/src/ui/ui.html"
+}
