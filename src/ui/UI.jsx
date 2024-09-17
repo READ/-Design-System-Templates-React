@@ -1,8 +1,47 @@
 import { useState } from "react";
 
+import React from 'react';
+
+import AsyncSelect from 'react-select/async';
+import { collectionsArray } from '../code/code';
+
+/* const filterColors = (inputValue: string) => {
+  return collections.filter((i) =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase())
+  );
+};
+
+const loadOptions = (
+  inputValue: string,
+  callback: (options: Collection[]) => void
+) => {
+  setTimeout(() => {
+    callback(filterColors(inputValue));
+  }, 1000);
+};
+
+export default () => (
+  <AsyncSelect cacheOptions loadOptions={loadOptions} defaultOptions />
+); */
+
+
+// 
+
 export const UI = () => {
+
   const [count, setCount] = useState(5);
 
+  const update = () => {
+    window.parent.postMessage(
+      {
+        pluginMessage: {
+          type: "update-collections",
+          count,
+        },
+      },
+      "*"
+    );
+  };
   const create = () => {
     window.parent.postMessage(
       {
@@ -40,6 +79,7 @@ export const UI = () => {
       </header>
       <div class="input-wrapper">
         <label>How many rectangles?</label>
+
         <input
           type="number"
           value={count}
@@ -47,6 +87,9 @@ export const UI = () => {
         />
       </div>
       <footer class="flex gap-4 justify-center">
+        <button class="primary" onClick={update}>
+          Update
+        </button>
         <button class="primary" onClick={create}>
           Create
         </button>
